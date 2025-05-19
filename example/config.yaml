@@ -1,0 +1,27 @@
+bot: telegram
+bot.telegram:
+  bot_token: your_bot_token_here
+  user_id: your_user_id_here
+  # Optional webhook URL (must be HTTPS)
+  webhook: "https://example.com/tgbot"
+  # Required if webhook is set, used to setup listening
+  webhook_path: "tgbot"
+  # Required if webhook is set, used to setup listening
+  webhook_port: 8080
+
+jobs:
+  # Run backup at 5 AM daily
+  - name: daily-backup
+    cron: "0 0 5 * * *"
+    program: rsync
+    args:
+      - "-av"
+      - "/path/from"
+      - "/path/to"
+
+  # Run system update check every 6 hours
+  - name: system-update
+    cron: "0 0 */6 * * *"
+    program: apt-get
+    args:
+      - "update"
