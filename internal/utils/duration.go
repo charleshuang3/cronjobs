@@ -20,16 +20,16 @@ func PrettyPrintDuration(d time.Duration) string {
 	var sb strings.Builder
 
 	if days > 0 {
-		sb.WriteString(fmt.Sprintf("%dd ", days))
+		fmt.Fprintf(&sb, "%dd ", days)
 	}
 	if hours > 0 {
-		sb.WriteString(fmt.Sprintf("%dh ", hours))
+		fmt.Fprintf(&sb, "%dh ", hours)
 	}
 	if minutes > 0 {
-		sb.WriteString(fmt.Sprintf("%dm ", minutes))
+		fmt.Fprintf(&sb, "%dm ", minutes)
 	}
 	if seconds > 0 || sb.Len() == 0 { // Always show seconds if no higher units are present
-		sb.WriteString(fmt.Sprintf("%ds", seconds))
+		fmt.Fprintf(&sb, "%ds", seconds)
 	}
 
 	return strings.TrimSpace(sb.String()) // Trim the space at the end

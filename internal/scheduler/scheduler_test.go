@@ -1,15 +1,15 @@
 package scheduler
 
 import (
-	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/charleshuang3/cronjobs/internal/bot/bottesting"
 	"github.com/charleshuang3/cronjobs/internal/config"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestExecuteJobSuccess(t *testing.T) {
@@ -28,7 +28,6 @@ func TestExecuteJobSuccess(t *testing.T) {
 
 func TestExecuteJobFailed(t *testing.T) {
 	tempDir := t.TempDir()
-	defer os.RemoveAll(tempDir)
 
 	s := New(nil)
 

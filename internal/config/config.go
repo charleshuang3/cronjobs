@@ -6,8 +6,9 @@ import (
 	"os/exec"
 	"regexp"
 
-	"github.com/charleshuang3/cronjobs/internal/bot"
 	"github.com/goccy/go-yaml"
+
+	"github.com/charleshuang3/cronjobs/internal/bot"
 )
 
 var jobNameRegex = regexp.MustCompile(`^[a-zA-Z0-9_-]+$`)

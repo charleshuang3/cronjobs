@@ -9,6 +9,7 @@ import (
 	"github.com/PaulSonOfLars/gotgbot/v2"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext"
 	"github.com/PaulSonOfLars/gotgbot/v2/ext/handlers"
+
 	"github.com/charleshuang3/cronjobs/internal/utils"
 )
 
@@ -130,10 +131,10 @@ func (t *TelegramBot) HandleListCommand(ctx context.Context) (string, error) {
 	var sb strings.Builder
 	sb.WriteString("*Scheduled jobs:*\n\n")
 	for _, job := range jobs {
-		sb.WriteString(fmt.Sprintf("*%s* \\(Schedule: `%s`\\)\n",
+		fmt.Fprintf(&sb, "*%s* \\(Schedule: `%s`\\)\n",
 			job.Name,
 			job.Cron,
-		))
+		)
 	}
 	return sb.String(), nil
 }
@@ -158,7 +159,7 @@ func (t *TelegramBot) HandleStatusCommand(ctx context.Context) (string, error) {
 	sb.WriteString("*Running jobs:*\n\n")
 	for jobName, duration := range runningJobs {
 		formattedDuration := utils.PrettyPrintDuration(duration)
-		sb.WriteString(fmt.Sprintf("*%s*: Running for %s\n", jobName, formattedDuration))
+		fmt.Fprintf(&sb, "*%s*: Running for %s\n", jobName, formattedDuration)
 	}
 	return sb.String(), nil
 }
@@ -282,7 +283,7 @@ func (t *TelegramBot) SendJobExecuteResult(result JobExecuteResult) error {
 	durationStr := utils.PrettyPrintDuration(result.Duration)
 
 	var msg strings.Builder
-	msg.WriteString(fmt.Sprintf(notificationFormat, resStr, result.JobName, durationStr))
+	fmt.Fprintf(&msg, notificationFormat, resStr, result.JobName, durationStr)
 
 	remaining := maxMessageLen - msg.Len()
 

@@ -7,9 +7,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/robfig/cron/v3"
+
 	"github.com/charleshuang3/cronjobs/internal/bot"
 	"github.com/charleshuang3/cronjobs/internal/config"
-	"github.com/robfig/cron/v3"
 )
 
 // Scheduler manages and runs cron jobs
