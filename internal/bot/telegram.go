@@ -76,9 +76,7 @@ func NewTelegramBot(config *TelegramConfig, scheduler JobScheduler) (*TelegramBo
 		},
 	})
 
-	updater := ext.NewUpdater(dispatcher, &ext.UpdaterOpts{
-		ErrorLog: nil,
-	})
+	updater := ext.NewUpdater(dispatcher, nil)
 
 	return &TelegramBot{
 		config:     config,
