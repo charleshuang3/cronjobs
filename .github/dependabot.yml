@@ -1,8 +1,17 @@
 version: 2
 updates:
-  - package-ecosystem: "gomod"
-    directory: "/"                   # Root directory where `go.mod` is located
+  - package-ecosystem: gomod
+    directory: "/"
     schedule:
-      interval: "weekly"             # Checks for updates every week
-    commit-message:
-      prefix: "[deps]"               # Adds "deps" prefix to PR titles
+      interval: weekly
+    groups:
+      go-dependencies:
+        patterns: ["*"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      actions-dependencies:
+        patterns: ["*"]
