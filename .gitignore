@@ -1,5 +1,6 @@
 # Binary
 /cronjobs
+bin/
 
 # Test configurations
 manual-test.yaml
